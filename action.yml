@@ -1,0 +1,17 @@
+name: 'Get issue details of Jira issue'
+description: 'You can get Jira issue title and type name'
+branding:
+  icon: 'aperture'  
+  color: 'orange'
+inputs:
+  issue:  
+    description: 'Issue key'
+    required: true
+outputs:
+  title:
+    description: 'Issue title'
+  type_name: 
+    description: 'Issue type name'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

@@ -1,0 +1,22 @@
+{
+  "name": "jira-issue-details",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.js --license licenses.txt --minify",
+    "watch": "ncc build index.js --watch --minify"
+  },
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0",
+    "btoa": "^1.2.1",
+    "node-fetch": "^2.6.1",
+    "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.30.0",
+    "eslint": "^7.32.0"
+  }
+}
