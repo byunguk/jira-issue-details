@@ -7,6 +7,13 @@ const btoa = require('btoa')
 
 const configPath = `${process.env.HOME}/jira/config.yml`
 
+function stripEndQuotes(s) {
+	var t = s.length;
+	if (s.charAt(0)=='"') s = s.substring(1,t--);
+	if (s.charAt(--t)=='"') s = s.substring(0,t);
+	return s;
+}
+
 async function exec() {
   try {
     if (!fs.existsSync(configPath)) {
@@ -29,7 +36,7 @@ async function exec() {
     const body = await response.text()
     console.log(body)
     const issue = JSON.parse(body)
-    const title = JSON.stringify(issue.fields.summary).replace(/'/g, "\\'")
+    const title = stripEndQuotes(JSON.stringify(issue.fields.summary).replace(/'/g, "\\'"))
     console.log(`issue.summary ${title}`)
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
     core.setOutput("title", title)
