@@ -29,7 +29,7 @@ async function exec() {
     const body = await response.text()
     console.log(body)
     const issue = JSON.parse(body)
-    const title = JSON.stringify(issue.fields.summary)
+    const title = JSON.stringify(issue.fields.summary).replace(/[\/\(\)\']/g, "\'")
     console.log(`issue.summary ${title}`)
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
     core.setOutput("title", title)
