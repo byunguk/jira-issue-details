@@ -37,7 +37,7 @@ async function exec() {
     const body = await response.text()
     console.log(body)
     const issue = JSON.parse(body)
-    const title = stripEndQuotes(JSON.stringify(issue.fields.summary))
+    var title = stripEndQuotes(JSON.stringify(issue.fields.summary))
     if (escapeQuote) {
       title = title.replace(/'/g, "'\\''")
     }
