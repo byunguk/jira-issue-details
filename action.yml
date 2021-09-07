@@ -7,6 +7,10 @@ inputs:
   issue:  
     description: 'Issue key'
     required: true
+  escape_single_quote:
+    description: 'Esacpe single quote for bash shell'
+    required: false
+    default: true
 outputs:
   title:
     description: 'Issue title'

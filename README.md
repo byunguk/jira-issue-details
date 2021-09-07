@@ -51,6 +51,7 @@ jobs:
 
 ### Inputs
 * `issue` (required) - issue key to perform a transition on
+* `escape_single_quote` - escape single quote for bash shell (default: true)
 
 ### Outpus
 * title - issue title

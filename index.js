@@ -9,8 +9,8 @@ const configPath = `${process.env.HOME}/jira/config.yml`
 
 function stripEndQuotes(s) {
 	var t = s.length;
-	if (s.charAt(0)=='"') s = s.substring(1,t--);
-	if (s.charAt(--t)=='"') s = s.substring(0,t);
+	if (s.charAt(0) == '"') s = s.substring(1, t--);
+	if (s.charAt(--t) == '"') s = s.substring(0, t);
 	return s;
 }
 
@@ -22,6 +22,7 @@ async function exec() {
     } 
     const config = YAML.parse(fs.readFileSync(configPath, 'utf8'))
     const key = core.getInput('issue')
+    const escapeQuote = core.getInput('escape_single_quote')
     if (key.length == 0) {
       core.setFailed('No issue found')
       return
@@ -36,7 +37,10 @@ async function exec() {
     const body = await response.text()
     console.log(body)
     const issue = JSON.parse(body)
-    const title = stripEndQuotes(JSON.stringify(issue.fields.summary).replace(/'/g, "'\\''"))
+    const title = stripEndQuotes(JSON.stringify(issue.fields.summary))
+    if (escapeQuote) {
+      title = title.replace(/'/g, "'\\''")
+    }
     console.log(`issue.summary ${title}`)
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
     core.setOutput("title", title)
