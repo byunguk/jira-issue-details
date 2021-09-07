@@ -23,6 +23,7 @@ async function exec() {
     const config = YAML.parse(fs.readFileSync(configPath, 'utf8'))
     const key = core.getInput('issue')
     const escapeQuote = core.getInput('escape_single_quote')
+    console.log(`EscapeQuote is ${escapeQuote}`)
     if (key.length == 0) {
       core.setFailed('No issue found')
       return
