@@ -23,7 +23,8 @@ async function exec() {
     const config = YAML.parse(fs.readFileSync(configPath, 'utf8'))
     const key = core.getInput('issue')
     const escapeQuote = core.getInput('escape_single_quote')
-    console.log(`EscapeQuote is ${escapeQuote}`)
+    const shouldEscapeQuote = (escapeQuote === "true")
+    console.log(`shouldEscapeQuote is ${shouldEscapeQuote}`)
     if (key.length == 0) {
       core.setFailed('No issue found')
       return
@@ -39,11 +40,11 @@ async function exec() {
     console.log(body)
     const issue = JSON.parse(body)
     var title = stripEndQuotes(JSON.stringify(issue.fields.summary))
-    if (escapeQuote) {
-      console.log(`escapeQuote is true`)
+    if (shouldEscapeQuote) {
+      console.log(`shouldEscapeQuote is true`)
       title = title.replace(/'/g, "'\\''")
     } else {
-      console.log(`escapeQuote is false`)
+      console.log(`shouldEscapeQuote is false`)
     }
     console.log(`issue.summary ${title}`)
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
