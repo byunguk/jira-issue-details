@@ -41,11 +41,8 @@ async function exec() {
     const issue = JSON.parse(body)
     var title = stripEndQuotes(JSON.stringify(issue.fields.summary))
     if (shouldEscapeQuote) {
-      console.log(`shouldEscapeQuote is true`)
       title = title.replace(/'/g, "'\\''")
-    } else {
-      console.log(`shouldEscapeQuote is false`)
-    }
+    } 
     console.log(`issue.summary ${title}`)
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
     core.setOutput("title", title)
