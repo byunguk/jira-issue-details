@@ -40,7 +40,10 @@ async function exec() {
     const issue = JSON.parse(body)
     var title = stripEndQuotes(JSON.stringify(issue.fields.summary))
     if (escapeQuote) {
+      console.log(`escapeQuote is true`)
       title = title.replace(/'/g, "'\\''")
+    } else {
+      console.log(`escapeQuote is false`)
     }
     console.log(`issue.summary ${title}`)
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
