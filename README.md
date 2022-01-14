@@ -31,14 +31,14 @@ jobs:
       run: echo "Issue title is ${{ steps.issue.outputs.title }}"
 
     - name: Transition issue(Story)
-      if: ${{ steps.issue.outputs.type_name == 'Story' }}
+      if: steps.issue.outputs.type_name == 'Story'
       uses: atlassian/gajira-transition@master
       with:
         issue: LLP-689
         transition: 'Done'
 
     - name: Transition issue(Bug)
-      if: ${{ steps.issue.outputs.type_name == 'Bug' }}
+      if: steps.issue.outputs.type_name == 'Bug'
       uses: atlassian/gajira-transition@master
       with:
         issue: LLP-689
