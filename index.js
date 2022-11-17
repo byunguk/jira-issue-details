@@ -47,6 +47,7 @@ async function exec() {
     console.log(`issuetype.name ${issue.fields.issuetype.name}`)
     core.setOutput("title", title)
     core.setOutput("type_name", issue.fields.issuetype.name)
+    core.setOutput("labels", issue.fields.labels)
   } catch (error) {
     console.log(error)
     core.setFailed(error.message)

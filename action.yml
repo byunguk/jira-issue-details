@@ -16,6 +16,8 @@ outputs:
     description: 'Issue title'
   type_name: 
     description: 'Issue type name'
+  labels: 
+    description: 'Issue labels'    
 runs:
   using: 'node12'
   main: 'dist/index.js'
